@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import readline from 'node:readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
+import { spawnSync } from 'node:child_process'
 import { pdfDir, catalogFile, generatePdfs } from './build-pdfs.mjs'
 
 const CATEGORIES = [
@@ -125,6 +126,13 @@ async function main() {
     console.error(`这个 PDF 已经收录过了：${file}`)
     process.exit(1)
   }
+
+  // 用 macOS 自带的 sips 生成封面缩略图
+  const coverDir = path.join(pdfDir, 'covers')
+  fs.mkdirSync(coverDir, { recursive: true })
+  spawnSync('sips', ['-s', 'format', 'png', dest, '-Z', '1200', '--out', path.join(coverDir, `${slug}.png`)], {
+    stdio: 'pipe'
+  })
 
   catalog.push({
     file,
