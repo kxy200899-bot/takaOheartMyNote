@@ -9,3 +9,5 @@ docs/.vitepress/cache/
 .tmp-*
 
 tools/
+
+/takaOheartMyNote/

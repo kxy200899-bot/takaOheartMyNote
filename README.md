@@ -140,13 +140,17 @@ my-note-site/
 运行「③ 发布到 GitHub」：它会自动 commit；如果 push 需要登录 GitHub，
 脚本会自动帮你打开 GitHub Desktop，点 **Push origin** 即可。
 
-### 第一次开启网站（只需要一次）
+### 第一次开启网站
 
-现在打开网址会 404，因为 Pages 还没启用。
+workflow 里已经加了 `enablement: true`，第一次推送时会自动启用 Pages，
+一般不需要手动设置。
+
+如果 Actions 在 configure-pages 这一步报 “Pages site not found”，再手动开：
 
 1. 打开 <https://github.com/kxy200899-bot/takaOheartMyNote/settings/pages>
-2. **Build and deployment → Source** 选择 **GitHub Actions**
-3. 回到 **Actions** 页面，如果最新一次运行失败，点 **Re-run all jobs**
+2. 左侧菜单 **Code and automation → Pages**（直接访问上面链接最稳）
+3. **Build and deployment → Source** 选择 **GitHub Actions**
+4. 回 **Actions** 点 **Re-run all jobs**
 
 之后网址是：
 
