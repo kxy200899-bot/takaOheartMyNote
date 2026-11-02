@@ -10,5 +10,16 @@ export default [
     "size": "2.0 MB",
     "sizeBytes": 2076189,
     "cover": "/pdfs/covers/chm1001mid.png"
+  },
+  {
+    "file": "/pdfs/mat2042-midterm-review-notes.pdf",
+    "title": "mat2042-midterm-review-notes",
+    "category": "Maths Notes",
+    "categoryKey": "maths-notes",
+    "description": "",
+    "date": "2026-11-02",
+    "size": "3.4 MB",
+    "sizeBytes": 3524392,
+    "cover": "/pdfs/covers/mat2042-midterm-review-notes.png"
   }
 ]
