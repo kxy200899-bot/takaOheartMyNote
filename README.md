@@ -115,22 +115,38 @@ my-note-site/
 本机没有系统 git，VS Code 已经配置使用 GitHub Desktop 自带的 git
 （见 `.vscode/settings.json`）。
 
-### 日常更新（推荐用 GitHub Desktop）
+### 第一次：把项目加进 GitHub Desktop
 
-1. 改完文件，切到 GitHub Desktop；
-2. 左下角填 Summary（例如 `add: 线代第三章 PDF`）；
+仓库已经在本地初始化好，远程也配置好了，现在有 2 个 commit 等待推送。
+
+1. 打开 GitHub Desktop → **File → Add Local Repository**
+2. 选择 `/Users/ykxalexa/Desktop/my-note-site`
+3. 左侧出现仓库后，点右上角 **Push origin**
+
+> 如果左侧列表里还有一个 `my-note-site/my-note-site` 的旧仓库（提示找不到文件），
+> 右键 → **Remove** 删掉它即可，那是一个空的重复 clone。
+
+推送完成后，去 GitHub 仓库的 **Actions** 页面确认 workflow 是否在运行。
+
+### 日常更新
+
+1. 改完文件，GitHub Desktop 会自动列出改动；
+2. 左下角 Summary 写一句说明（例如 `add: 线代第三章 PDF`）；
 3. 点 **Commit to main**，再点 **Push origin**；
 4. 1–2 分钟后 GitHub Actions 自动构建并发布。
 
 ### 或者用 VS Code 任务
 
 运行「③ 发布到 GitHub」：它会自动 commit；如果 push 需要登录 GitHub，
-会提示你回到 GitHub Desktop 点 **Push origin**。
+脚本会自动帮你打开 GitHub Desktop，点 **Push origin** 即可。
 
-### 第一次开启网站
+### 第一次开启网站（只需要一次）
 
-仓库页面 → **Settings → Pages → Build and deployment → Source** 选择
-**GitHub Actions**。
+现在打开网址会 404，因为 Pages 还没启用。
+
+1. 打开 <https://github.com/kxy200899-bot/takaOheartMyNote/settings/pages>
+2. **Build and deployment → Source** 选择 **GitHub Actions**
+3. 回到 **Actions** 页面，如果最新一次运行失败，点 **Re-run all jobs**
 
 之后网址是：
 

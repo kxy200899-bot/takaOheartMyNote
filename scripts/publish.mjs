@@ -17,6 +17,12 @@ function findGit() {
   return null
 }
 
+function openDesktop() {
+  if (process.platform === 'darwin') {
+    spawnSync('open', ['-a', 'GitHub Desktop', root], { stdio: 'ignore' })
+  }
+}
+
 const git = findGit()
 // GitHub Desktop 自带的 git 需要手动指定 exec-path，否则 https 推送会失败
 const gitEnv = { ...process.env }
@@ -74,12 +80,13 @@ if (!remotes) {
   console.log(`
 提交已完成，但还没有远程仓库。
 
-打开 GitHub Desktop → Add Local Repository → 选择：
+已为你打开 GitHub Desktop：Add Local Repository → 选择
 
   ${root}
 
 然后点右上角的 "Publish repository"。
 `)
+  openDesktop()
   process.exit(0)
 }
 
@@ -91,10 +98,11 @@ const push = spawnSync(git, ['push'], {
 
 if (push.status !== 0) {
   console.log(`
-推送没有成功（可能是还没有登录 GitHub）。
+推送没有成功（命令行没有 GitHub 登录信息）。
 
-打开 GitHub Desktop，点右上角 "Push origin" 即可。
+已为你打开 GitHub Desktop，点右上角 "Push origin" 即可。
 `)
+  openDesktop()
   process.exit(0)
 }
 
