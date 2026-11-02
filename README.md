@@ -57,7 +57,7 @@ npm run setup:pdf
 ```bash
 npm run pdf
 # 或者指定别的页面
-npm run pdf -- --route /maths-notes/linear-algebra/pagerank --out pagerank.pdf
+npm run pdf -- --md docs/maths-notes/linear-algebra/pagerank.md --out pagerank.pdf
 ```
 
 导出的 PDF 是浅色、无导航栏的打印版，公式和手绘图都会保留。
@@ -93,47 +93,55 @@ my-note-site/
 └── package.json
 ```
 
-## 发布到 GitHub Pages
+## 在 VS Code 里使用
 
-### 1. 在 GitHub 上创建仓库
+打开项目文件夹，按 `Cmd + Shift + P`，输入 **Tasks: Run Task**，会看到：
 
-新建一个空仓库，例如 `takaOheartMyNote`。**不要**勾选自动生成 README。
+| 任务 | 作用 |
+| --- | --- |
+| ① 导入 PDF 笔记 | 选 PDF、选分类、填标题，自动收录并更新 PDF 笔记库 |
+| ② 本地预览网站 | 启动 `npm run dev` |
+| ③ 发布到 GitHub | 自动 commit，并尝试 push |
+| 新建网页笔记 | 交互式新建 Markdown 笔记 |
+| 把网页笔记导出成 PDF | 用 Typst 导出打印版 PDF |
 
-### 2. 本地安装 git 并推送
+**导入 PDF 的正确姿势**：运行「① 导入 PDF 笔记」，在弹出的输入框里直接
+把 Finder 里的 PDF **拖进去**，路径会自动填好，然后选分类、写标题即可。
 
-macOS 如果提示“no developer tools”，先安装命令行工具：
+## 发布到 GitHub
 
-```bash
-xcode-select --install
-```
+仓库：<https://github.com/kxy200899-bot/takaOheartMyNote>
 
-然后在本文件夹里：
+本机没有系统 git，VS Code 已经配置使用 GitHub Desktop 自带的 git
+（见 `.vscode/settings.json`）。
 
-```bash
-git init
-git add .
-git commit -m "init: takaOheartMyNote"
-git branch -M main
-git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-git push -u origin main
-```
+### 日常更新（推荐用 GitHub Desktop）
 
-> 没有 git 也可以：在 GitHub 网页上新建仓库，用 “uploading an existing file” 把项目文件夹（不含 `node_modules`、`tools`、`docs/.vitepress/dist`、`.tmp`）拖上去。
+1. 改完文件，切到 GitHub Desktop；
+2. 左下角填 Summary（例如 `add: 线代第三章 PDF`）；
+3. 点 **Commit to main**，再点 **Push origin**；
+4. 1–2 分钟后 GitHub Actions 自动构建并发布。
 
-### 3. 打开 GitHub Pages
+### 或者用 VS Code 任务
+
+运行「③ 发布到 GitHub」：它会自动 commit；如果 push 需要登录 GitHub，
+会提示你回到 GitHub Desktop 点 **Push origin**。
+
+### 第一次开启网站
 
 仓库页面 → **Settings → Pages → Build and deployment → Source** 选择
 **GitHub Actions**。
 
-推送完成后，`.github/workflows/deploy.yml` 会自动构建并发布，网址是：
+之后网址是：
 
 ```
-https://<你的用户名>.github.io/<仓库名>/
+https://kxy200899-bot.github.io/takaOheartMyNote/
 ```
 
-仓库名如果是 `<用户名>.github.io`，网址直接是 `https://<用户名>.github.io/`。
+工作流会自动设置 `BASE_PATH`；仓库名如果是 `<用户名>.github.io`，网址是
+`https://<用户名>.github.io/`。
 
-工作流会自动设置 `BASE_PATH`，不需要手动改配置。
+> 注意：Pages 必须手动开一次；没开之前 Actions 的 deploy 步骤会失败。
 
 ## 常用命令
 
