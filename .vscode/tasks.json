@@ -1,0 +1,78 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "① 导入 PDF 笔记",
+      "type": "shell",
+      "command": "npm run new-pdf -- \"${input:pdfPath}\" \"${input:category}\" \"${input:title}\" \"${input:description}\"",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "② 本地预览网站",
+      "type": "shell",
+      "command": "npm run dev",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "③ 发布到 GitHub",
+      "type": "shell",
+      "command": "npm run publish -- \"${input:message}\"",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "新建网页笔记",
+      "type": "shell",
+      "command": "npm run new",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "把网页笔记导出成 PDF",
+      "type": "shell",
+      "command": "npm run pdf",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pdfPath",
+      "type": "promptString",
+      "description": "PDF 路径（把文件从 Finder 拖进输入框）"
+    },
+    {
+      "id": "category",
+      "type": "pickString",
+      "description": "放进哪个分类",
+      "options": [
+        "General Chemistry",
+        "Maths Notes",
+        "Python",
+        "Personal Essay",
+        "Career Plan",
+        "Other"
+      ],
+      "default": "General Chemistry"
+    },
+    {
+      "id": "title",
+      "type": "promptString",
+      "description": "标题"
+    },
+    {
+      "id": "description",
+      "type": "promptString",
+      "description": "一句话描述（可留空）",
+      "default": ""
+    },
+    {
+      "id": "message",
+      "type": "promptString",
+      "description": "这次提交的说明（可留空）",
+      "default": ""
+    }
+  ]
+}

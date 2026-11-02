@@ -1,0 +1,21 @@
+{
+  "name": "taka-oheart-my-note",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/build-sidebar.mjs && node scripts/build-pdfs.mjs && vitepress dev docs",
+    "build": "node scripts/build-sidebar.mjs && node scripts/build-pdfs.mjs && vitepress build docs",
+    "preview": "vitepress preview docs",
+    "new": "node scripts/new-note.mjs",
+    "new-pdf": "node scripts/new-pdf.mjs",
+    "pdf": "node scripts/make-pdf.mjs",
+    "pdfs": "node scripts/build-pdfs.mjs",
+    "setup:pdf": "node scripts/setup-pdf.mjs",
+    "publish": "node scripts/publish.mjs"
+  },
+  "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress": "^1.6.4"
+  }
+}

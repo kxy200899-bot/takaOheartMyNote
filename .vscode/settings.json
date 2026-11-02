@@ -1,0 +1,5 @@
+{
+  "git.path": "/Applications/GitHub Desktop.app/Contents/Resources/app/git/bin/git",
+  "git.autofetch": true,
+  "terminal.integrated.cwd": "${workspaceFolder}"
+}
